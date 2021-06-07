@@ -3,18 +3,19 @@ package com.bybutter.glesdemo
 import android.opengl.GLSurfaceView
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.bybutter.glesdemo.program.BasicProgram
+import com.bybutter.glesdemo.program.GoogleDemoProgram
+import com.bybutter.glesdemo.widget.MyGlSurfaceView
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
 class MainActivity : AppCompatActivity() {
-    private val glSurfaceView by lazy { GLSurfaceView(this) }
+    private val glSurfaceView by lazy { MyGlSurfaceView(this) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(glSurfaceView)
-        glSurfaceView.setEGLContextClientVersion(3)
+
         glSurfaceView.setRenderer(object : GLSurfaceView.Renderer {
-            private val program = BasicProgram()
+            private val program = GoogleDemoProgram()
             override fun onSurfaceCreated(gl: GL10, config: EGLConfig) {
                 program.doOnInit()
             }
